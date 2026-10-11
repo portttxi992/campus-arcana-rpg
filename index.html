@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>校園奧秘 | Campus Arcana</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+    <!-- 標題畫面 -->
+    <section id="title-screen" class="screen active">
+      <div class="title-content">
+        <h1 class="game-title">校園奧秘</h1>
+        <p class="game-subtitle">Campus Arcana</p>
+        <p class="tagline">現代校園 · 隱藏的奇幻世界</p>
+        <div class="title-buttons">
+          <button id="btn-new-game" class="btn primary">開始新遊戲</button>
+          <button id="btn-continue" class="btn secondary" disabled>繼續遊戲</button>
+          <button id="btn-select-story" class="btn secondary">選擇劇情版本</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 角色建立 -->
+    <section id="create-screen" class="screen">
+      <div class="create-box">
+        <h2>建立角色</h2>
+        <p class="hint">你是一名剛轉入「星辰高中」的學生……</p>
+        <div class="name-input-group">
+          <input type="text" id="player-name" placeholder="輸入你的名字" maxlength="12" autocomplete="off">
+          <button id="btn-random-name" class="btn-icon" title="隨機暱稱">🎲</button>
+        </div>
+        <button id="btn-start" class="btn primary" disabled>進入校園</button>
+      </div>
+    </section>
+
+    <!-- 遊戲主畫面 -->
+    <section id="game-screen" class="screen">
+      <header class="game-header">
+        <div class="player-info">
+          <span id="display-name">—</span>
+          <button id="btn-save" class="btn-icon small" title="存檔">💾</button>
+          <button id="btn-menu" class="btn-icon small" title="選單">☰</button>
+        </div>
+        <div id="affection-bar" class="affection-bar"></div>
+      </header>
+
+      <main class="story-area">
+        <div id="story-text" class="story-text"></div>
+        <div id="choices" class="choices"></div>
+      </main>
+
+      <div id="status-toast" class="toast hidden"></div>
+    </section>
+
+    <!-- 選單彈窗 -->
+    <div id="menu-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>選單</h3>
+        <button id="btn-load" class="btn secondary">讀取存檔</button>
+        <button id="btn-restart" class="btn secondary">重新開始</button>
+        <button id="btn-title" class="btn secondary">返回標題</button>
+        <button id="btn-close-menu" class="btn primary">關閉</button>
+      </div>
+    </div>
+
+    <!-- 劇情版本選擇 -->
+    <div id="story-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>選擇劇情版本</h3>
+        <div id="story-list"></div>
+        <button id="btn-close-story" class="btn primary">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
