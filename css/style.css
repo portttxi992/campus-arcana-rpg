@@ -58,7 +58,7 @@ body {
   font-family: var(--font-serif);
   font-size: 2.8rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   background: linear-gradient(135deg, #c5d4ff, #7c9cff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -140,6 +140,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .btn-icon:hover {
@@ -163,9 +164,9 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   width: 100%;
-  max-width: 380px;
+  max-width: 320px;
   text-align: center;
 }
 
@@ -184,11 +185,13 @@ body {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+  justify-content: center;
 }
 
 #player-name {
-  flex: 1;
-  padding: 0.85rem 1rem;
+  width: 140px;
+  max-width: 140px;
+  padding: 0.85rem 0.8rem;
   border: 1px solid var(--border);
   border-radius: 10px;
   background: var(--bg);
@@ -196,6 +199,7 @@ body {
   font-size: 1rem;
   font-family: inherit;
   outline: none;
+  text-align: center;
 }
 
 #player-name:focus {
@@ -398,5 +402,9 @@ body {
   .story-text {
     font-size: 1rem;
     padding: 1.1rem;
+  }
+  #player-name {
+    width: 120px;
+    max-width: 120px;
   }
 }
