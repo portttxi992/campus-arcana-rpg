@@ -11,6 +11,7 @@
   --warning: #f0c674;
   --danger: #e06c75;
   --heart: #ff7b9c;
+  --ai: #c9a0ff;
   --font-sans: 'Noto Sans TC', system-ui, sans-serif;
   --font-serif: 'Noto Serif TC', serif;
 }
@@ -43,7 +44,6 @@ body {
   flex-direction: column;
 }
 
-/* ===== 標題畫面 ===== */
 #title-screen {
   justify-content: center;
   align-items: center;
@@ -60,7 +60,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 0.3rem;
-  transition: all 0.3s ease;
 }
 
 .game-subtitle {
@@ -81,7 +80,7 @@ body {
   flex-direction: column;
   gap: 0.7rem;
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
   margin: 0 auto 1.5rem;
 }
 
@@ -95,7 +94,6 @@ body {
   font-size: 0.85rem;
 }
 
-/* ===== 按鈕 ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -118,6 +116,15 @@ body {
 }
 .btn.primary:hover:not(:disabled) {
   background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.btn.ai-btn {
+  background: linear-gradient(135deg, #9b7bff, #7c9cff);
+  color: #0f1419;
+}
+.btn.ai-btn:hover:not(:disabled) {
+  filter: brightness(1.1);
   transform: translateY(-1px);
 }
 
@@ -158,7 +165,6 @@ body {
 .btn-icon.small { width: 36px; height: 36px; font-size: 1rem; }
 .btn-icon.active { border-color: var(--accent); background: #2a3a55; }
 
-/* ===== 角色建立 ===== */
 #create-screen { justify-content: center; align-items: center; }
 
 .create-box {
@@ -196,9 +202,7 @@ body {
 }
 #player-name:focus { border-color: var(--accent); }
 
-/* ===== 遊戲主畫面 ===== */
 #game-screen { padding-top: 1rem; }
-
 .game-header { margin-bottom: 1.25rem; }
 
 .player-info {
@@ -218,6 +222,10 @@ body {
   padding: 0.15rem 0.5rem;
   border-radius: 6px;
   margin-right: auto;
+}
+.chapter-label.ai-label {
+  color: var(--ai);
+  background: #2a2040;
 }
 
 .affection-bar {
@@ -244,23 +252,10 @@ body {
   gap: 0.3rem;
 }
 
-.affection-item .rank {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-}
+.affection-item .rank { font-size: 0.7rem; color: var(--text-muted); }
+.affection-item .hearts { color: var(--heart); letter-spacing: -1px; }
+.affection-item .value { color: var(--accent); font-weight: 600; margin-left: auto; }
 
-.affection-item .hearts {
-  color: var(--heart);
-  letter-spacing: -1px;
-}
-
-.affection-item .value {
-  color: var(--accent);
-  font-weight: 600;
-  margin-left: auto;
-}
-
-/* ===== 故事區 ===== */
 .story-area { flex: 1; display: flex; flex-direction: column; }
 
 .story-text {
@@ -301,14 +296,30 @@ body {
   background: #2a3a55;
   transform: translateX(4px);
 }
-
 .choice-btn.next-chapter {
   border-color: var(--accent);
   background: #1e2d4a;
   font-weight: 500;
 }
+.choice-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
 
-/* ===== Toast & Modal ===== */
+.ai-loading {
+  text-align: center;
+  color: var(--ai);
+  padding: 1rem;
+  font-size: 0.95rem;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+.ai-loading.hidden { display: none; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
 .toast {
   position: fixed;
   bottom: 2rem;
@@ -322,6 +333,7 @@ body {
   font-size: 0.9rem;
   z-index: 100;
   animation: toastIn 0.3s ease;
+  max-width: 90%;
 }
 .toast.hidden { display: none; }
 
@@ -353,9 +365,30 @@ body {
   flex-direction: column;
   gap: 0.7rem;
 }
-.modal-content.wide { max-width: 400px; }
+.modal-content.wide { max-width: 420px; }
 .modal-content h3 { margin-bottom: 0.3rem; text-align: center; }
-.modal-hint { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-bottom: 0.5rem; }
+.modal-hint { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-bottom: 0.3rem; }
+
+.form-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: left;
+  margin-top: 0.3rem;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  outline: none;
+}
+.form-input:focus, .form-select:focus { border-color: var(--accent); }
+.form-select { cursor: pointer; }
 
 .story-item {
   background: var(--bg-soft);
@@ -368,10 +401,7 @@ body {
 }
 .story-item:hover:not(.locked) { border-color: var(--accent); }
 .story-item.active { border-color: var(--accent); background: #2a3a55; }
-.story-item.locked {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
+.story-item.locked { opacity: 0.55; cursor: not-allowed; }
 .story-item.locked::after {
   content: '🔒';
   position: absolute;
@@ -381,6 +411,8 @@ body {
 }
 .story-item h4 { font-size: 0.98rem; margin-bottom: 0.2rem; }
 .story-item p { font-size: 0.78rem; color: var(--text-muted); }
+
+.hidden { display: none !important; }
 
 @media (max-width: 480px) {
   .game-title { font-size: 2.1rem; }
