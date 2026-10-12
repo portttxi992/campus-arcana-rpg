@@ -131,6 +131,15 @@ body {
   border-color: var(--accent);
 }
 
+.btn.danger-btn {
+  border-color: #5a3038;
+  color: #e8a0a8;
+}
+.btn.danger-btn:hover:not(:disabled) {
+  border-color: var(--danger);
+  background: #2a1a1e;
+}
+
 .btn-icon {
   background: var(--bg-soft);
   border: 1px solid var(--border);
@@ -291,6 +300,12 @@ body {
   border-color: var(--accent);
   background: #2a3a55;
   transform: translateX(4px);
+}
+
+.choice-btn.next-chapter {
+  border-color: var(--accent);
+  background: #1e2d4a;
+  font-weight: 500;
 }
 
 /* ===== Toast & Modal ===== */
