@@ -10,7 +10,6 @@
 </head>
 <body>
   <div id="app">
-    <!-- 標題畫面 -->
     <section id="title-screen" class="screen active">
       <div class="title-content">
         <h1 class="game-title" id="main-title">校園奧秘</h1>
@@ -28,8 +27,6 @@
         </div>
       </div>
     </section>
-
-    <!-- 角色建立 -->
     <section id="create-screen" class="screen">
       <div class="create-box">
         <h2>建立角色</h2>
@@ -41,8 +38,6 @@
         <button id="btn-start" class="btn primary" disabled>進入故事</button>
       </div>
     </section>
-
-    <!-- 遊戲主畫面 -->
     <section id="game-screen" class="screen">
       <header class="game-header">
         <div class="player-info">
@@ -53,16 +48,12 @@
         </div>
         <div id="affection-bar" class="affection-bar"></div>
       </header>
-
       <main class="story-area">
         <div id="story-text" class="story-text"></div>
         <div id="choices" class="choices"></div>
       </main>
-
       <div id="status-toast" class="toast hidden"></div>
     </section>
-
-    <!-- 選單彈窗 -->
     <div id="menu-modal" class="modal hidden">
       <div class="modal-content">
         <h3>選單</h3>
@@ -73,8 +64,6 @@
         <button id="btn-close-menu" class="btn primary">關閉</button>
       </div>
     </div>
-
-    <!-- 章節選擇 -->
     <div id="story-modal" class="modal hidden">
       <div class="modal-content wide">
         <h3>選擇章節</h3>
@@ -84,7 +73,7 @@
       </div>
     </div>
   </div>
-
-  <script type="module" src="js/game.js"></script>
+  <script src="js/stories.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>
